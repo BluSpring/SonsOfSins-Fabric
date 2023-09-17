@@ -17,6 +17,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Registry;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.LevelAccessor;
 
@@ -46,6 +47,9 @@ public class WistiverEntityIsHurtProcedure {
 
                         // don't fucking break gravestones
                         if (Registry.BLOCK.getKey(blockState.getBlock()).getNamespace().equals("gravestones"))
+                            continue;
+
+                        if (blockState.is(BlockTags.WITHER_IMMUNE) || blockState.is(BlockTags.DRAGON_IMMUNE))
                             continue;
 
                         world.destroyBlock(blockPos, false);
