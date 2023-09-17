@@ -67,7 +67,7 @@ public class GoodbyeEffectOnEffectActiveTickProcedure {
 
             do {
                 entityType = entities.get(world.getRandom().nextInt(entities.size())).get();
-            } while (!(entityType instanceof ISinEntity));
+            } while (!ISinEntity.class.isAssignableFrom(entityType.getBaseClass()));
 
             var entityToSpawn = entityType.create(_level);
 
