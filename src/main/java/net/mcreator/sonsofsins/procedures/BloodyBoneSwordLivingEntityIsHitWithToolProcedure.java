@@ -7,7 +7,7 @@
  */
 package net.mcreator.sonsofsins.procedures;
 
-import net.mcreator.sonsofsins.entity.*;
+import net.mcreator.sonsofsins.entity.ISinEntity;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 
@@ -16,7 +16,7 @@ public class BloodyBoneSwordLivingEntityIsHitWithToolProcedure {
         if (entity == null) {
             return;
         }
-        if (entity instanceof WistiverEntity || entity instanceof WalkingBedEntity || entity instanceof ProwlerEntity || entity instanceof IronHitEntity || entity instanceof CurseEntity || entity instanceof BloodyDriverEntity || entity instanceof BloodyButcherEntity) {
+        if (entity instanceof ISinEntity) {
             entity.hurt(DamageSource.HOT_FLOOR, 30.0f);
         }
     }

@@ -63,7 +63,6 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.entity.projectile.ThrownPotion;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
 
@@ -71,7 +70,7 @@ import java.util.EnumSet;
 
 
 public class CurseEntity
-extends Monster {
+extends Monster implements ISinEntity {
 
     public CurseEntity(EntityType<CurseEntity> type, Level world) {
         super(type, world);
@@ -211,16 +210,15 @@ extends Monster {
     }
 
     public static AttributeSupplier.Builder createAttributes() {
-        AttributeSupplier.Builder builder = Mob.createMobAttributes();
-        builder = builder.add(Attributes.MOVEMENT_SPEED, 0.3);
-        builder = builder.add(Attributes.MAX_HEALTH, 200.0);
-        builder = builder.add(Attributes.ARMOR, 0.0);
-        builder = builder.add(Attributes.ATTACK_DAMAGE, 5.0);
-        builder = builder.add(Attributes.FOLLOW_RANGE, 64.0);
-        builder = builder.add(Attributes.KNOCKBACK_RESISTANCE, 0.5);
-        builder = builder.add(Attributes.ATTACK_KNOCKBACK, 1.0);
-        builder = builder.add(Attributes.FLYING_SPEED, 0.3);
-        return builder;
+        return Mob.createMobAttributes()
+            .add(Attributes.MOVEMENT_SPEED, 0.3)
+            .add(Attributes.MAX_HEALTH, 200.0)
+            .add(Attributes.ARMOR, 0.0)
+            .add(Attributes.ATTACK_DAMAGE, 5.0)
+            .add(Attributes.FOLLOW_RANGE, 64.0)
+            .add(Attributes.KNOCKBACK_RESISTANCE, 0.5)
+            .add(Attributes.ATTACK_KNOCKBACK, 1.0)
+            .add(Attributes.FLYING_SPEED, 0.3);
     }
 }
 

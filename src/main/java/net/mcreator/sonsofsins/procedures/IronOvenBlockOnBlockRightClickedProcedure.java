@@ -7,9 +7,8 @@ package net.mcreator.sonsofsins.procedures;
 
 import net.mcreator.sonsofsins.init.SonsOfSinsModParticleTypes;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Registry;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.SimpleContainer;
@@ -113,9 +112,9 @@ public class IronOvenBlockOnBlockRightClickedProcedure {
 
                     if (world instanceof Level _level) {
                         if (!_level.isClientSide()) {
-                            _level.playSound(null, new BlockPos(x, y, z), Registry.SOUND_EVENT.get(new ResourceLocation("block.fire.extinguish")), SoundSource.NEUTRAL, 1.0F, 1.0F);
+                            _level.playSound(null, new BlockPos(x, y, z), SoundEvents.FIRE_EXTINGUISH, SoundSource.NEUTRAL, 1.0F, 1.0F);
                         } else {
-                            _level.playLocalSound(x, y, z, Registry.SOUND_EVENT.get(new ResourceLocation("block.fire.extinguish")), SoundSource.NEUTRAL, 1.0F, 1.0F, false);
+                            _level.playLocalSound(x, y, z, SoundEvents.FIRE_EXTINGUISH, SoundSource.NEUTRAL, 1.0F, 1.0F, false);
                         }
                     }
                 }

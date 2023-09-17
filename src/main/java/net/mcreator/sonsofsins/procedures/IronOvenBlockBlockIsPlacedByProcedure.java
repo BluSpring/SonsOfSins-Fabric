@@ -17,12 +17,9 @@ import net.mcreator.sonsofsins.entity.IronOvenEntity;
 import net.mcreator.sonsofsins.init.SonsOfSinsModEntities;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.MobSpawnType;
-import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
-import net.minecraft.world.level.ServerLevelAccessor;
 
 public class IronOvenBlockBlockIsPlacedByProcedure {
     public static void execute(LevelAccessor world, double x, double y, double z, Entity entity) {
@@ -30,7 +27,7 @@ public class IronOvenBlockBlockIsPlacedByProcedure {
             return;
         }
         if (world instanceof ServerLevel _level) {
-            IronOvenEntity entityToSpawn = new IronOvenEntity((EntityType<IronOvenEntity>) SonsOfSinsModEntities.IRON_OVEN.get(), _level);
+            IronOvenEntity entityToSpawn = new IronOvenEntity(SonsOfSinsModEntities.IRON_OVEN.get(), _level);
             entityToSpawn.moveTo(x + 0.5, y, z + 0.5, entity.getYRot(), 0.0f);
             entityToSpawn.setYBodyRot(entity.getYRot());
             entityToSpawn.setYHeadRot(entity.getYRot());

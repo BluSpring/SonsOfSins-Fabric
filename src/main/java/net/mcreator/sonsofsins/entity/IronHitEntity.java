@@ -44,7 +44,6 @@ import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.BreakDoorGoal;
-import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
 import net.minecraft.world.entity.ai.goal.RandomLookAroundGoal;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
@@ -53,10 +52,9 @@ import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.ThrownPotion;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LevelAccessor;
 
 public class IronHitEntity
-extends Monster {
+extends Monster implements ISinEntity {
 
     public IronHitEntity(EntityType<IronHitEntity> type, Level world) {
         super(type, world);
@@ -129,15 +127,14 @@ extends Monster {
     }
 
     public static AttributeSupplier.Builder createAttributes() {
-        AttributeSupplier.Builder builder = Mob.createMobAttributes();
-        builder = builder.add(Attributes.MOVEMENT_SPEED, 0.3);
-        builder = builder.add(Attributes.MAX_HEALTH, 250.0);
-        builder = builder.add(Attributes.ARMOR, 0.0);
-        builder = builder.add(Attributes.ATTACK_DAMAGE, 15.0);
-        builder = builder.add(Attributes.FOLLOW_RANGE, 64.0);
-        builder = builder.add(Attributes.KNOCKBACK_RESISTANCE, 1.0);
-        builder = builder.add(Attributes.ATTACK_KNOCKBACK, 2.0);
-        return builder;
+        return Mob.createMobAttributes()
+            .add(Attributes.MOVEMENT_SPEED, 0.3)
+            .add(Attributes.MAX_HEALTH, 250.0)
+            .add(Attributes.ARMOR, 0.0)
+            .add(Attributes.ATTACK_DAMAGE, 15.0)
+            .add(Attributes.FOLLOW_RANGE, 64.0)
+            .add(Attributes.KNOCKBACK_RESISTANCE, 1.0)
+            .add(Attributes.ATTACK_KNOCKBACK, 2.0);
     }
 }
 

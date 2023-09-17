@@ -19,13 +19,11 @@
  */
 package net.mcreator.sonsofsins.procedures;
 
-import net.mcreator.sonsofsins.entity.*;
 import net.mcreator.sonsofsins.init.SonsOfSinsModEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.core.Registry;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.Mob;
@@ -35,7 +33,6 @@ import net.minecraft.world.level.LevelAccessor;
 
 public class GoodbyeEffectOnEffectActiveTickProcedure {
     public static void execute(LevelAccessor world, double x, double y, double z, Entity entity) {
-        ServerLevel _level;
         if (entity == null) {
             return;
         }
@@ -59,101 +56,27 @@ public class GoodbyeEffectOnEffectActiveTickProcedure {
             ycord = entity.getY();
             zcord = entity.getZ();
         }
-        if (Math.random() < 0.143) {
-            if (world instanceof ServerLevel) {
-                _level = (ServerLevel)world;
-                BloodyButcherEntity entityToSpawn = new BloodyButcherEntity(SonsOfSinsModEntities.BLOODY_BUTCHER.get(), _level);
-                entityToSpawn.moveTo(xcord, ycord, zcord, 0.0f, 0.0f);
-                entityToSpawn.setYBodyRot(0.0f);
-                entityToSpawn.setYHeadRot(0.0f);
-                if (entityToSpawn instanceof Mob) {
-                    Mob _mobToSpawn = entityToSpawn;
-                    _mobToSpawn.finalizeSpawn(_level, world.getCurrentDifficultyAt(entityToSpawn.blockPosition()), MobSpawnType.MOB_SUMMONED, null, null);
-                }
-                world.addFreshEntity(entityToSpawn);
-            }
-        } else if (Math.random() < 0.143) {
-            if (world instanceof ServerLevel) {
-                _level = (ServerLevel)world;
-                BloodyDriverEntity entityToSpawn = new BloodyDriverEntity(SonsOfSinsModEntities.BLOODY_DRIVER.get(), _level);
-                entityToSpawn.moveTo(xcord, ycord, zcord, 0.0f, 0.0f);
-                entityToSpawn.setYBodyRot(0.0f);
-                entityToSpawn.setYHeadRot(0.0f);
-                if (entityToSpawn instanceof Mob) {
-                    Mob _mobToSpawn = entityToSpawn;
-                    _mobToSpawn.finalizeSpawn(_level, world.getCurrentDifficultyAt(entityToSpawn.blockPosition()), MobSpawnType.MOB_SUMMONED, null, null);
-                }
-                world.addFreshEntity(entityToSpawn);
-            }
-        } else if (Math.random() < 0.143) {
-            if (world instanceof ServerLevel) {
-                _level = (ServerLevel)world;
-                CurseEntity entityToSpawn = new CurseEntity(SonsOfSinsModEntities.CURSE.get(), _level);
-                entityToSpawn.moveTo(xcord, ycord, zcord, 0.0f, 0.0f);
-                entityToSpawn.setYBodyRot(0.0f);
-                entityToSpawn.setYHeadRot(0.0f);
-                if (entityToSpawn instanceof Mob) {
-                    Mob _mobToSpawn = entityToSpawn;
-                    _mobToSpawn.finalizeSpawn(_level, world.getCurrentDifficultyAt(entityToSpawn.blockPosition()), MobSpawnType.MOB_SUMMONED, null, null);
-                }
-                world.addFreshEntity(entityToSpawn);
-            }
-        } else if (Math.random() < 0.143) {
-            if (world instanceof ServerLevel) {
-                _level = (ServerLevel)world;
-                IronHitEntity entityToSpawn = new IronHitEntity(SonsOfSinsModEntities.IRON_HIT.get(), _level);
-                entityToSpawn.moveTo(xcord, ycord, zcord, 0.0f, 0.0f);
-                entityToSpawn.setYBodyRot(0.0f);
-                entityToSpawn.setYHeadRot(0.0f);
-                if (entityToSpawn instanceof Mob) {
-                    Mob _mobToSpawn = entityToSpawn;
-                    _mobToSpawn.finalizeSpawn(_level, world.getCurrentDifficultyAt(entityToSpawn.blockPosition()), MobSpawnType.MOB_SUMMONED, null, null);
-                }
-                world.addFreshEntity(entityToSpawn);
-            }
-        } else if (Math.random() < 0.143) {
-            if (world instanceof ServerLevel) {
-                _level = (ServerLevel)world;
-                ProwlerEntity entityToSpawn = new ProwlerEntity(SonsOfSinsModEntities.PROWLER.get(), _level);
-                entityToSpawn.moveTo(xcord, ycord, zcord, 0.0f, 0.0f);
-                entityToSpawn.setYBodyRot(0.0f);
-                entityToSpawn.setYHeadRot(0.0f);
-                if (entityToSpawn instanceof Mob) {
-                    Mob _mobToSpawn = entityToSpawn;
-                    _mobToSpawn.finalizeSpawn(_level, world.getCurrentDifficultyAt(entityToSpawn.blockPosition()), MobSpawnType.MOB_SUMMONED, null, null);
-                }
-                world.addFreshEntity(entityToSpawn);
-            }
-        } else if (Math.random() < 0.143) {
-            if (world instanceof ServerLevel) {
-                _level = (ServerLevel)world;
-                WalkingBedEntity entityToSpawn = new WalkingBedEntity(SonsOfSinsModEntities.WALKING_BED.get(), _level);
-                entityToSpawn.moveTo(xcord, ycord, zcord, 0.0f, 0.0f);
-                entityToSpawn.setYBodyRot(0.0f);
-                entityToSpawn.setYHeadRot(0.0f);
-                if (entityToSpawn instanceof Mob) {
-                    Mob _mobToSpawn = entityToSpawn;
-                    _mobToSpawn.finalizeSpawn(_level, world.getCurrentDifficultyAt(entityToSpawn.blockPosition()), MobSpawnType.MOB_SUMMONED, null, null);
-                }
-                world.addFreshEntity(entityToSpawn);
-            }
-        } else if (world instanceof ServerLevel) {
-            _level = (ServerLevel)world;
-            WistiverEntity entityToSpawn = new WistiverEntity(SonsOfSinsModEntities.WISTIVER.get(), _level);
+
+        if (world instanceof ServerLevel _level) {
+            var entities = SonsOfSinsModEntities.REGISTRY.getEntries().stream().toList();
+            // maybe there's good reason for why it was the way it was,
+            // but we don't need that, let's just make it a fair random chance.
+            var entityToSpawn = entities.get(world.getRandom().nextInt(entities.size())).get().create(_level);
+
             entityToSpawn.moveTo(xcord, ycord, zcord, 0.0f, 0.0f);
             entityToSpawn.setYBodyRot(0.0f);
             entityToSpawn.setYHeadRot(0.0f);
-            if (entityToSpawn instanceof Mob) {
-                Mob _mobToSpawn = entityToSpawn;
+            if (entityToSpawn instanceof Mob _mobToSpawn) {
                 _mobToSpawn.finalizeSpawn(_level, world.getCurrentDifficultyAt(entityToSpawn.blockPosition()), MobSpawnType.MOB_SUMMONED, null, null);
             }
             world.addFreshEntity(entityToSpawn);
         }
+
         if (world instanceof Level level) {
             if (!world.isClientSide()) {
-                world.playSound(null, new BlockPos(x, y, z), Registry.SOUND_EVENT.get(new ResourceLocation("entity.wither.spawn")), SoundSource.NEUTRAL, 1.0f, 1.0f);
+                world.playSound(null, new BlockPos(x, y, z), SoundEvents.WITHER_SPAWN, SoundSource.NEUTRAL, 1.0f, 1.0f);
             } else {
-                level.playLocalSound(x, y, z, Registry.SOUND_EVENT.get(new ResourceLocation("entity.wither.spawn")), SoundSource.NEUTRAL, 1.0f, 1.0f, false);
+                level.playLocalSound(x, y, z, SoundEvents.WITHER_SPAWN, SoundSource.NEUTRAL, 1.0f, 1.0f, false);
             }
         }
     }

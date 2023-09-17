@@ -35,118 +35,47 @@ public class CursedHeadLivingEntityIsHitWithItemProcedure {
         if (entity == null || sourceentity == null) {
             return;
         }
-        if (entity instanceof LivingEntity) {
-
-            ItemEntity entityToSpawn;
-
+        if (entity instanceof LivingEntity living) {
             if (!sourceentity.isShiftKeyDown() && Math.random() < 0.8) {
-                Player _player;
-                LivingEntity _entGetArmor;
                 if (world instanceof Level && !world.isClientSide()) {
-                    ItemStack itemStack;
-                    if (entity instanceof LivingEntity) {
-                        _entGetArmor = (LivingEntity)entity;
-                        itemStack = _entGetArmor.getItemBySlot(EquipmentSlot.HEAD);
-                    } else {
-                        itemStack = ItemStack.EMPTY;
+                    for (EquipmentSlot slot : EquipmentSlot.values()) {
+                        if (slot.getType() != EquipmentSlot.Type.ARMOR)
+                            continue;
+
+                        var itemStack = living.getItemBySlot(slot);
+                        var itemEntity = new ItemEntity((Level) world, x, y, z, itemStack);
+                        itemEntity.setPickUpDelay(10);
+                        world.addFreshEntity(itemEntity);
+
+                        if (living instanceof Player player) {
+                            player.getInventory().armor.set(slot.getIndex(), ItemStack.EMPTY);
+                        } else {
+                            living.setItemSlot(slot, ItemStack.EMPTY);
+                        }
                     }
-                    entityToSpawn = new ItemEntity((Level)world, x, y, z, itemStack);
-                    entityToSpawn.setPickUpDelay(10);
-                    world.addFreshEntity(entityToSpawn);
-                }
-                if (world instanceof Level && !world.isClientSide()) {
-                    ItemStack itemStack;
-                    if (entity instanceof LivingEntity) {
-                        _entGetArmor = (LivingEntity)entity;
-                        itemStack = _entGetArmor.getItemBySlot(EquipmentSlot.CHEST);
-                    } else {
-                        itemStack = ItemStack.EMPTY;
+
+                    if (living instanceof Player player) {
+                        player.getInventory().setChanged();
                     }
-                    entityToSpawn = new ItemEntity((Level)world, x, y, z, itemStack);
-                    entityToSpawn.setPickUpDelay(10);
-                    world.addFreshEntity(entityToSpawn);
-                }
-                if (world instanceof Level && !world.isClientSide()) {
-                    ItemStack itemStack;
-                    if (entity instanceof LivingEntity) {
-                        _entGetArmor = (LivingEntity)entity;
-                        itemStack = _entGetArmor.getItemBySlot(EquipmentSlot.LEGS);
-                    } else {
-                        itemStack = ItemStack.EMPTY;
-                    }
-                    entityToSpawn = new ItemEntity((Level)world, x, y, z, itemStack);
-                    entityToSpawn.setPickUpDelay(10);
-                    world.addFreshEntity(entityToSpawn);
-                }
-                if (world instanceof Level && !world.isClientSide()) {
-                    ItemStack itemStack;
-                    if (entity instanceof LivingEntity) {
-                        _entGetArmor = (LivingEntity)entity;
-                        itemStack = _entGetArmor.getItemBySlot(EquipmentSlot.FEET);
-                    } else {
-                        itemStack = ItemStack.EMPTY;
-                    }
-                    entityToSpawn = new ItemEntity((Level)world, x, y, z, itemStack);
-                    entityToSpawn.setPickUpDelay(10);
-                    world.addFreshEntity(entityToSpawn);
-                }
-                if (entity instanceof Player) {
-                    _player = (Player)entity;
-                    _player.getInventory().armor.set(3, ItemStack.EMPTY);
-                    _player.getInventory().setChanged();
-                } else if (entity instanceof LivingEntity) {
-                    
-                    entity.setItemSlot(EquipmentSlot.HEAD, ItemStack.EMPTY);
-                }
-                
-                if (entity instanceof Player) {
-                    _player = (Player)entity;
-                    _player.getInventory().armor.set(2, ItemStack.EMPTY);
-                    _player.getInventory().setChanged();
-                } else if (entity instanceof LivingEntity) {
-                    
-                    entity.setItemSlot(EquipmentSlot.CHEST, ItemStack.EMPTY);
-                }
-                
-                if (entity instanceof Player) {
-                    _player = (Player)entity;
-                    _player.getInventory().armor.set(1, ItemStack.EMPTY);
-                    _player.getInventory().setChanged();
-                } else if (entity instanceof LivingEntity) {
-                    
-                    entity.setItemSlot(EquipmentSlot.LEGS, ItemStack.EMPTY);
-                }
-                
-                if (entity instanceof Player) {
-                    _player = (Player)entity;
-                    _player.getInventory().armor.set(0, ItemStack.EMPTY);
-                    _player.getInventory().setChanged();
-                } else if (entity instanceof LivingEntity) {
-                    
-                    entity.setItemSlot(EquipmentSlot.FEET, ItemStack.EMPTY);
                 }
             }
             if (sourceentity.isShiftKeyDown() && Math.random() < 0.8) {
                 if (world instanceof Level && !world.isClientSide()) {
-                    ItemStack itemStack;
-                    if (entity instanceof LivingEntity _livEnt) {
-                        itemStack = _livEnt.getMainHandItem();
-                    } else {
-                        itemStack = ItemStack.EMPTY;
+                    for (InteractionHand hand : InteractionHand.values()) {
+                        var itemStack = living.getItemInHand(hand);
+                        var itemEntity = new ItemEntity((Level) world, x, y, z, itemStack);
+                        itemEntity.setPickUpDelay(10);
+                        world.addFreshEntity(itemEntity);
+
+                        living.setItemInHand(hand, ItemStack.EMPTY);
                     }
-                    entityToSpawn = new ItemEntity((Level)world, x, y, z, itemStack);
-                    entityToSpawn.setPickUpDelay(10);
-                    world.addFreshEntity(entityToSpawn);
-                }
-                if (entity instanceof LivingEntity living) {
-                    ItemStack _setstack = ItemStack.EMPTY;
-                    _setstack.setCount(1);
-                    living.setItemInHand(InteractionHand.MAIN_HAND, _setstack);
-                    if (entity instanceof Player _player) {
-                        _player.getInventory().setChanged();
+
+                    if (living instanceof Player player) {
+                        player.getInventory().setChanged();
                     }
                 }
             }
+
             if (world instanceof ServerLevel level) {
                 level.sendParticles((ParticleOptions) SonsOfSinsModParticleTypes.SIN_SOUL.get(), entity.getX(), entity.getY(), entity.getZ(), 6, 0.3, 0.3, 0.3, 0.01);
             }

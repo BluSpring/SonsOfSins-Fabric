@@ -36,7 +36,6 @@ import net.minecraft.world.phys.Vec3;
 
 public class CursePlayerCollidesWithThisEntityProcedure {
     public static void execute(LevelAccessor world, double x, double y, double z, Entity entity, Entity sourceentity) {
-        Level _level;
         if (entity == null || sourceentity == null) {
             return;
         }
@@ -44,93 +43,26 @@ public class CursePlayerCollidesWithThisEntityProcedure {
             sourceentity.setDeltaMovement(new Vec3((entity.getX() - sourceentity.getX()) * 0.5, (entity.getY() - sourceentity.getY()) * 0.5, (entity.getZ() - sourceentity.getZ()) * 0.5));
         }
         if (Math.random() < 0.8) {
-            LivingEntity _living;
-            Player _player;
-            Entity _entity;
-            ItemEntity entityToSpawn;
-            LivingEntity _entGetArmor;
-            if (world instanceof Level && !(_level = (Level)world).isClientSide()) {
-                ItemStack itemStack;
-                if (entity instanceof LivingEntity) {
-                    _entGetArmor = (LivingEntity)entity;
-                    itemStack = _entGetArmor.getItemBySlot(EquipmentSlot.HEAD);
-                } else {
-                    itemStack = ItemStack.EMPTY;
+            if (entity instanceof LivingEntity living) {
+                for (EquipmentSlot slot : EquipmentSlot.values()) {
+                    if (slot.getType() != EquipmentSlot.Type.ARMOR)
+                        continue;
+
+                    var itemStack = living.getItemBySlot(slot);
+                    var itemEntity = new ItemEntity((Level) world, x, y, z, itemStack);
+                    itemEntity.setPickUpDelay(10);
+                    world.addFreshEntity(itemEntity);
+
+                    if (living instanceof Player player) {
+                        player.getInventory().armor.set(slot.getIndex(), ItemStack.EMPTY);
+                    } else {
+                        living.setItemSlot(slot, ItemStack.EMPTY);
+                    }
                 }
-                entityToSpawn = new ItemEntity(_level, x, y, z, itemStack);
-                entityToSpawn.setPickUpDelay(10);
-                _level.addFreshEntity(entityToSpawn);
-            }
-            if (world instanceof Level && !(_level = (Level)world).isClientSide()) {
-                ItemStack itemStack;
-                if (entity instanceof LivingEntity) {
-                    _entGetArmor = (LivingEntity)entity;
-                    itemStack = _entGetArmor.getItemBySlot(EquipmentSlot.CHEST);
-                } else {
-                    itemStack = ItemStack.EMPTY;
+
+                if (living instanceof Player player) {
+                    player.getInventory().setChanged();
                 }
-                entityToSpawn = new ItemEntity(_level, x, y, z, itemStack);
-                entityToSpawn.setPickUpDelay(10);
-                _level.addFreshEntity(entityToSpawn);
-            }
-            if (world instanceof Level && !(_level = (Level)world).isClientSide()) {
-                ItemStack itemStack;
-                if (entity instanceof LivingEntity) {
-                    _entGetArmor = (LivingEntity)entity;
-                    itemStack = _entGetArmor.getItemBySlot(EquipmentSlot.LEGS);
-                } else {
-                    itemStack = ItemStack.EMPTY;
-                }
-                entityToSpawn = new ItemEntity(_level, x, y, z, itemStack);
-                entityToSpawn.setPickUpDelay(10);
-                _level.addFreshEntity(entityToSpawn);
-            }
-            if (world instanceof Level && !(_level = (Level)world).isClientSide()) {
-                ItemStack itemStack;
-                if (entity instanceof LivingEntity) {
-                    _entGetArmor = (LivingEntity)entity;
-                    itemStack = _entGetArmor.getItemBySlot(EquipmentSlot.FEET);
-                } else {
-                    itemStack = ItemStack.EMPTY;
-                }
-                entityToSpawn = new ItemEntity(_level, x, y, z, itemStack);
-                entityToSpawn.setPickUpDelay(10);
-                _level.addFreshEntity(entityToSpawn);
-            }
-            if ((_entity = entity) instanceof Player) {
-                _player = (Player)_entity;
-                _player.getInventory().armor.set(3, ItemStack.EMPTY);
-                _player.getInventory().setChanged();
-            } else if (_entity instanceof LivingEntity) {
-                _living = (LivingEntity)_entity;
-                _living.setItemSlot(EquipmentSlot.HEAD, ItemStack.EMPTY);
-            }
-            _entity = entity;
-            if (_entity instanceof Player) {
-                _player = (Player)_entity;
-                _player.getInventory().armor.set(2, ItemStack.EMPTY);
-                _player.getInventory().setChanged();
-            } else if (_entity instanceof LivingEntity) {
-                _living = (LivingEntity)_entity;
-                _living.setItemSlot(EquipmentSlot.CHEST, ItemStack.EMPTY);
-            }
-            _entity = entity;
-            if (_entity instanceof Player) {
-                _player = (Player)_entity;
-                _player.getInventory().armor.set(1, ItemStack.EMPTY);
-                _player.getInventory().setChanged();
-            } else if (_entity instanceof LivingEntity) {
-                _living = (LivingEntity)_entity;
-                _living.setItemSlot(EquipmentSlot.LEGS, ItemStack.EMPTY);
-            }
-            _entity = entity;
-            if (_entity instanceof Player) {
-                _player = (Player)_entity;
-                _player.getInventory().armor.set(0, ItemStack.EMPTY);
-                _player.getInventory().setChanged();
-            } else if (_entity instanceof LivingEntity) {
-                _living = (LivingEntity)_entity;
-                _living.setItemSlot(EquipmentSlot.FEET, ItemStack.EMPTY);
             }
         }
         if (world instanceof ServerLevel serverLevel) {

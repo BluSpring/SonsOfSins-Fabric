@@ -45,7 +45,10 @@ import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.entity.ai.goal.*;
+import net.minecraft.world.entity.ai.goal.BreakDoorGoal;
+import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
+import net.minecraft.world.entity.ai.goal.RandomLookAroundGoal;
+import net.minecraft.world.entity.ai.goal.RangedAttackGoal;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.monster.Monster;
@@ -53,11 +56,10 @@ import net.minecraft.world.entity.monster.RangedAttackMob;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.ThrownPotion;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LevelAccessor;
 
 public class BloodyDriverEntity
 extends Monster
-implements RangedAttackMob {
+implements RangedAttackMob, ISinEntity {
 
     public BloodyDriverEntity(EntityType<BloodyDriverEntity> type, Level world) {
         super(type, world);
@@ -143,14 +145,13 @@ implements RangedAttackMob {
     }
 
     public static AttributeSupplier.Builder createAttributes() {
-        AttributeSupplier.Builder builder = Mob.createMobAttributes();
-        builder = builder.add(Attributes.MOVEMENT_SPEED, 0.3);
-        builder = builder.add(Attributes.MAX_HEALTH, 600.0);
-        builder = builder.add(Attributes.ARMOR, 0.0);
-        builder = builder.add(Attributes.ATTACK_DAMAGE, 40.0);
-        builder = builder.add(Attributes.FOLLOW_RANGE, 64.0);
-        builder = builder.add(Attributes.KNOCKBACK_RESISTANCE, 2.0);
-        return builder;
+        return Mob.createMobAttributes()
+            .add(Attributes.MOVEMENT_SPEED, 0.3)
+            .add(Attributes.MAX_HEALTH, 600.0)
+            .add(Attributes.ARMOR, 0.0)
+            .add(Attributes.ATTACK_DAMAGE, 40.0)
+            .add(Attributes.FOLLOW_RANGE, 64.0)
+            .add(Attributes.KNOCKBACK_RESISTANCE, 2.0);
     }
 }
 

@@ -36,7 +36,6 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LevelAccessor;
 
 public class IronOvenEntity
 extends PathfinderMob {
@@ -113,13 +112,12 @@ extends PathfinderMob {
     }
 
     public static AttributeSupplier.Builder createAttributes() {
-        AttributeSupplier.Builder builder = Mob.createMobAttributes();
-        builder = builder.add(Attributes.MOVEMENT_SPEED, 0.3);
-        builder = builder.add(Attributes.MAX_HEALTH, 1.0);
-        builder = builder.add(Attributes.ARMOR, 0.0);
-        builder = builder.add(Attributes.ATTACK_DAMAGE, 3.0);
-        builder = builder.add(Attributes.FOLLOW_RANGE, 16.0);
-        return builder;
+        return Mob.createMobAttributes()
+            .add(Attributes.MOVEMENT_SPEED, 0.3)
+            .add(Attributes.MAX_HEALTH, 1.0)
+            .add(Attributes.ARMOR, 0.0)
+            .add(Attributes.ATTACK_DAMAGE, 3.0)
+            .add(Attributes.FOLLOW_RANGE, 16.0);
     }
 }
 
