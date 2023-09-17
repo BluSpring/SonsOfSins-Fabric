@@ -1,0 +1,26 @@
+modLoader="javafml"
+loaderVersion="[43,)"
+license="Academic Free License v3.0"
+
+[[mods]]
+modId="sons_of_sins"
+version="1.1.1"
+displayName="sons of sins"
+credits="Furti_Two"
+displayURL="https://www.curseforge.com/minecraft/mc-mods/sons-of-sins"
+logoFile="logo.png"
+authors="Furti_Two"
+description='''
+No
+'''
+
+[[dependencies.sons_of_sins]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="[1.19.2]"
+    ordering="NONE"
+    side="BOTH"
+
+
+
+

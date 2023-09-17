@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "01",
+    "23",
+    " 5"
+  ],
+  "key": {
+    "0": {
+      "item": "sons_of_sins:bloody_bone"
+    },
+    "1": {
+      "item": "sons_of_sins:bloody_bone"
+    },
+    "2": {
+      "item": "sons_of_sins:bloody_bone"
+    },
+    "3": {
+      "item": "minecraft:stick"
+    },
+    "5": {
+      "item": "minecraft:stick"
+    }
+  },
+  "result": {
+    "item": "sons_of_sins:bloody_bone_axe",
+    "count": 1
+  }
+}

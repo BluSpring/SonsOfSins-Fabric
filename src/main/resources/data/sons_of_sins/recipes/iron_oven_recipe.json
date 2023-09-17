@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:smithing",
+  "base": {
+    "item": "minecraft:blast_furnace"
+  },
+  "addition": {
+    "item": "sons_of_sins:iron_motor"
+  },
+  "result": {
+    "item": "sons_of_sins:iron_oven_block"
+  }
+}

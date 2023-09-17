@@ -1,0 +1,6 @@
+{
+  "parent": "item/handheld",
+  "textures": {
+    "layer0": "sons_of_sins:items/bloody_bone_sword"
+  }
+}

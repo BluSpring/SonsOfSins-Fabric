@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "id": "sons-of-sins",
+  "version": "${version}",
+  "name": "sons of sins",
+  "description": "No",
+  "authors": [
+    "BluSpring",
+    "Furti_Two"
+  ],
+  "contact": {
+    "repo": "https://github.com/BluSpring/SonsOfSins"
+  },
+  "license": "MIT",
+  "icon": "logo.png",
+  "environment": "*",
+  "entrypoints": {
+    "client": [
+      "xyz.bluspring.sonsofsins.client.SonsOfSinsClient"
+    ],
+    "main": [
+      "xyz.bluspring.sonsofsins.SonsOfSins"
+    ]
+  },
+  "mixins": [
+    "sons-of-sins.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric": "*",
+    "minecraft": "${minecraft_version}"
+  },
+  "accessWidener": "sonsofsins.accesswidener"
+}

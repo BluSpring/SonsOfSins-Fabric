@@ -1,0 +1,191 @@
+{
+  "bloody_butcher_ambient": {
+    "category": "hostile",
+    "sounds": [
+      {
+        "name": "sons_of_sins:bloody_butcher_ambient",
+        "stream": false
+      }
+    ]
+  },
+  "bloody_butcher_death": {
+    "category": "hostile",
+    "sounds": [
+      {
+        "name": "sons_of_sins:bloody_butcher_death",
+        "stream": false
+      }
+    ]
+  },
+  "bloody_butcher_hurt": {
+    "category": "hostile",
+    "sounds": [
+      {
+        "name": "sons_of_sins:bloody_butcher_hurt",
+        "stream": false
+      }
+    ]
+  },
+  "bloody_driver_hurt": {
+    "category": "hostile",
+    "sounds": [
+      {
+        "name": "sons_of_sins:bloody_driver_hurt",
+        "stream": false
+      }
+    ]
+  },
+  "curse_ambient": {
+    "category": "hostile",
+    "sounds": [
+      {
+        "name": "sons_of_sins:curse_ambient",
+        "stream": false
+      }
+    ]
+  },
+  "curse_death": {
+    "category": "hostile",
+    "sounds": [
+      {
+        "name": "sons_of_sins:curse_death",
+        "stream": false
+      }
+    ]
+  },
+  "iron_hit_ambient": {
+    "category": "hostile",
+    "sounds": [
+      {
+        "name": "sons_of_sins:iron_hit_ambient",
+        "stream": false
+      }
+    ]
+  },
+  "curse_hurt": {
+    "category": "hostile",
+    "sounds": [
+      {
+        "name": "sons_of_sins:curse_hurt",
+        "stream": false
+      }
+    ]
+  },
+  "iron_hit_hurt": {
+    "category": "hostile",
+    "sounds": [
+      {
+        "name": "sons_of_sins:iron_hit_hurt",
+        "stream": false
+      }
+    ]
+  },
+  "iron_hit_death": {
+    "category": "hostile",
+    "sounds": [
+      {
+        "name": "sons_of_sins:iron_hit_death",
+        "stream": false
+      }
+    ]
+  },
+  "prowler_ambient": {
+    "category": "hostile",
+    "sounds": [
+      {
+        "name": "sons_of_sins:prowler_ambient",
+        "stream": false
+      }
+    ]
+  },
+  "prowler_death": {
+    "category": "hostile",
+    "sounds": [
+      {
+        "name": "sons_of_sins:prowler_death",
+        "stream": false
+      }
+    ]
+  },
+  "prowler_hurt": {
+    "category": "hostile",
+    "sounds": [
+      {
+        "name": "sons_of_sins:prowler_hurt",
+        "stream": false
+      }
+    ]
+  },
+  "bloody_driver_ambient": {
+    "category": "hostile",
+    "sounds": [
+      {
+        "name": "sons_of_sins:bloody_driver_ambient",
+        "stream": false
+      }
+    ]
+  },
+  "walking_bed_ambient": {
+    "category": "hostile",
+    "sounds": [
+      {
+        "name": "sons_of_sins:walking_bed_ambient",
+        "stream": false
+      }
+    ]
+  },
+  "walking_bed_death": {
+    "category": "hostile",
+    "sounds": [
+      {
+        "name": "sons_of_sins:walking_bed_death",
+        "stream": false
+      }
+    ]
+  },
+  "walking_bed_hurt": {
+    "category": "hostile",
+    "sounds": [
+      {
+        "name": "sons_of_sins:walking_bed_hurt",
+        "stream": false
+      }
+    ]
+  },
+  "wistiver_ambient": {
+    "category": "hostile",
+    "sounds": [
+      {
+        "name": "sons_of_sins:wistiver_ambient",
+        "stream": false
+      }
+    ]
+  },
+  "bloody_driver_death": {
+    "category": "hostile",
+    "sounds": [
+      {
+        "name": "sons_of_sins:bloody_driver_death",
+        "stream": false
+      }
+    ]
+  },
+  "wistiver_death": {
+    "category": "hostile",
+    "sounds": [
+      {
+        "name": "sons_of_sins:wistiver_death",
+        "stream": false
+      }
+    ]
+  },
+  "wistiver_hurt": {
+    "category": "hostile",
+    "sounds": [
+      {
+        "name": "sons_of_sins:wistiver_hurt",
+        "stream": false
+      }
+    ]
+  }
+}

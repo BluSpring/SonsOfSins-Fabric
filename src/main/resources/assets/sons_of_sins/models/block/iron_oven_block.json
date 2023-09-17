@@ -1,0 +1,8 @@
+{
+  "parent": "sons_of_sins:custom/iron_oven",
+  "textures": {
+    "all": "sons_of_sins:blocks/oven",
+    "particle": "sons_of_sins:blocks/oven"
+  },
+  "render_type": "cutout_mipped"
+}
