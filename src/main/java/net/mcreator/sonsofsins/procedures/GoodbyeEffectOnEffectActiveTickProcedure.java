@@ -27,7 +27,6 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.level.Level;
@@ -63,13 +62,15 @@ public class GoodbyeEffectOnEffectActiveTickProcedure {
             var entities = SonsOfSinsModEntities.REGISTRY.getEntries().stream().toList();
             // maybe there's good reason for why it was the way it was,
             // but we don't need that, let's just make it a fair random chance.
-            EntityType<?> entityType;
+            Entity entityToSpawn = null;
 
             do {
-                entityType = entities.get(world.getRandom().nextInt(entities.size())).get();
-            } while (!ISinEntity.class.isAssignableFrom(entityType.getBaseClass()));
+                if (entityToSpawn != null)
+                    entityToSpawn.remove(Entity.RemovalReason.DISCARDED);
 
-            var entityToSpawn = entityType.create(_level);
+                var entityType = entities.get(world.getRandom().nextInt(entities.size())).get();
+                entityToSpawn = entityType.create(_level);
+            } while (!(entityToSpawn instanceof ISinEntity));
 
             entityToSpawn.moveTo(xcord, ycord, zcord, 0.0f, 0.0f);
             entityToSpawn.setYBodyRot(0.0f);
