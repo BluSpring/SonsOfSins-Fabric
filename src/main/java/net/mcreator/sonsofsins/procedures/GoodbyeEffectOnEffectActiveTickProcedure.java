@@ -19,6 +19,7 @@
  */
 package net.mcreator.sonsofsins.procedures;
 
+import net.mcreator.sonsofsins.entity.ISinEntity;
 import net.mcreator.sonsofsins.init.SonsOfSinsModEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -26,6 +27,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.level.Level;
@@ -61,7 +63,13 @@ public class GoodbyeEffectOnEffectActiveTickProcedure {
             var entities = SonsOfSinsModEntities.REGISTRY.getEntries().stream().toList();
             // maybe there's good reason for why it was the way it was,
             // but we don't need that, let's just make it a fair random chance.
-            var entityToSpawn = entities.get(world.getRandom().nextInt(entities.size())).get().create(_level);
+            EntityType<?> entityType;
+
+            do {
+                entityType = entities.get(world.getRandom().nextInt(entities.size())).get();
+            } while (!(entityType instanceof ISinEntity));
+
+            var entityToSpawn = entityType.create(_level);
 
             entityToSpawn.moveTo(xcord, ycord, zcord, 0.0f, 0.0f);
             entityToSpawn.setYBodyRot(0.0f);
