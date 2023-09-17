@@ -96,7 +96,7 @@ extends PathfinderMob {
 
     public void baseTick() {
         super.baseTick();
-        IronOvenOnEntityTickUpdateProcedure.execute((LevelAccessor)this.level, (Entity)this);
+        IronOvenOnEntityTickUpdateProcedure.execute(this.level, this);
     }
 
     public boolean isPushable() {

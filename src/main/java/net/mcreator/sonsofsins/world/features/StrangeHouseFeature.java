@@ -66,8 +66,8 @@ extends Feature<NoneFeatureConfiguration> {
 
     public static Feature<?> feature() {
         FEATURE = new StrangeHouseFeature();
-        CONFIGURED_FEATURE = FeatureUtils.register((String)"sons_of_sins:strange_house", (Feature)FEATURE, (FeatureConfiguration)FeatureConfiguration.NONE);
-        PLACED_FEATURE = PlacementUtils.register((String)"sons_of_sins:strange_house", CONFIGURED_FEATURE, List.of());
+        CONFIGURED_FEATURE = FeatureUtils.register("sons_of_sins:strange_house", (Feature)FEATURE, (FeatureConfiguration)FeatureConfiguration.NONE);
+        PLACED_FEATURE = PlacementUtils.register("sons_of_sins:strange_house", CONFIGURED_FEATURE, List.of());
         return FEATURE;
     }
 
@@ -76,7 +76,7 @@ extends Feature<NoneFeatureConfiguration> {
     }
 
     public boolean place(FeaturePlaceContext<NoneFeatureConfiguration> context) {
-        if (!this.generate_dimensions.contains((Object)context.level().getLevel().dimension())) {
+        if (!this.generate_dimensions.contains(context.level().getLevel().dimension())) {
             return false;
         }
         if (this.template == null) {
@@ -92,9 +92,9 @@ extends Feature<NoneFeatureConfiguration> {
                 int i = context.origin().getX() + context.random().nextInt(16);
                 int k = context.origin().getZ() + context.random().nextInt(16);
                 int j = context.level().getHeight(Heightmap.Types.OCEAN_FLOOR_WG, i, k) - 1;
-                if (!this.base_blocks.contains((Object)context.level().getBlockState(new BlockPos(i, j, k)).getBlock())) continue;
-                BlockPos spawnTo = new BlockPos(i + 0, j + 0, k + 0);
-                if (!this.template.placeInWorld((ServerLevelAccessor)context.level(), spawnTo, spawnTo, new StructurePlaceSettings().setMirror(Mirror.values()[context.random().nextInt(2)]).setRotation(Rotation.values()[context.random().nextInt(3)]).setRandom(context.random()).addProcessor((StructureProcessor)BlockIgnoreProcessor.STRUCTURE_BLOCK).setIgnoreEntities(false), context.random(), 2)) continue;
+                if (!this.base_blocks.contains(context.level().getBlockState(new BlockPos(i, j, k)).getBlock())) continue;
+                BlockPos spawnTo = new BlockPos(i, j, k);
+                if (!this.template.placeInWorld(context.level(), spawnTo, spawnTo, new StructurePlaceSettings().setMirror(Mirror.values()[context.random().nextInt(2)]).setRotation(Rotation.values()[context.random().nextInt(3)]).setRandom(context.random()).addProcessor(BlockIgnoreProcessor.STRUCTURE_BLOCK).setIgnoreEntities(false), context.random(), 2)) continue;
                 anyPlaced = true;
             }
         }

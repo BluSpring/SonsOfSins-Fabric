@@ -19,7 +19,7 @@ import net.minecraft.core.Registry;
 import net.minecraft.world.level.block.Block;
 
 public class SonsOfSinsModBlocks {
-    public static final LazyRegistrar<Block> REGISTRY = LazyRegistrar.create(Registry.BLOCK, (String)"sons_of_sins");
+    public static final LazyRegistrar<Block> REGISTRY = LazyRegistrar.create(Registry.BLOCK, "sons_of_sins");
     public static final RegistryObject<Block> IRON_OVEN_BLOCK = REGISTRY.register("iron_oven_block", () -> new IronOvenBlockBlock());
     public static final RegistryObject<Block> SIN_APPLE = REGISTRY.register("sin_apple", () -> new SinAppleBlock());
     public static final RegistryObject<Block> STRUCTURE_SPAWNER = REGISTRY.register("structure_spawner", () -> new StructureSpawnerBlock());

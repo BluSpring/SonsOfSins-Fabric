@@ -76,16 +76,16 @@ extends Monster {
 
     protected void registerGoals() {
         super.registerGoals();
-        this.goalSelector.addGoal(1, (Goal)new MeleeAttackGoal((PathfinderMob)this, 1.6, false){
+        this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 1.6, false){
 
             protected double getAttackReachSqr(LivingEntity entity) {
                 return 4.0 + (double)(entity.getBbWidth() * entity.getBbWidth());
             }
         });
-        this.targetSelector.addGoal(2, (Goal)new NearestAttackableTargetGoal((Mob)this, Player.class, false, false));
-        this.targetSelector.addGoal(3, (Goal)new HurtByTargetGoal((PathfinderMob)this, new Class[0]));
-        this.goalSelector.addGoal(4, (Goal)new BreakDoorGoal((Mob)this, e -> true));
-        this.goalSelector.addGoal(5, (Goal)new RandomLookAroundGoal((Mob)this));
+        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal(this, Player.class, false, false));
+        this.targetSelector.addGoal(3, new HurtByTargetGoal(this, new Class[0]));
+        this.goalSelector.addGoal(4, new BreakDoorGoal(this, e -> true));
+        this.goalSelector.addGoal(5, new RandomLookAroundGoal(this));
     }
 
     public MobType getMobType() {
@@ -113,7 +113,7 @@ extends Monster {
     }
 
     public boolean hurt(DamageSource source, float amount) {
-        WistiverEntityIsHurtProcedure.execute((LevelAccessor)this.level, (Entity)this);
+        WistiverEntityIsHurtProcedure.execute(this.level, this);
         if (source.getDirectEntity() instanceof ThrownPotion || source.getDirectEntity() instanceof AreaEffectCloud) {
             return false;
         }
@@ -134,12 +134,12 @@ extends Monster {
 
     public void baseTick() {
         super.baseTick();
-        ProwlerOnEntityTickUpdateProcedure.execute((LevelAccessor)this.level, this.getX(), this.getY(), this.getZ(), (Entity)this);
+        ProwlerOnEntityTickUpdateProcedure.execute(this.level, this.getX(), this.getY(), this.getZ(), this);
     }
 
     public void playerTouch(Player sourceentity) {
         super.playerTouch(sourceentity);
-        PeacefulBedLivingEntityIsHitWithItemProcedure.execute((Entity)this);
+        PeacefulBedLivingEntityIsHitWithItemProcedure.execute(this);
     }
 
     public static void init() {

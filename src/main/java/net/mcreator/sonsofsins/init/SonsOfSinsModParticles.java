@@ -20,9 +20,9 @@ import net.minecraft.core.particles.ParticleType;
 
 public class SonsOfSinsModParticles {
     public static void registerParticles() {
-        ParticleProviderRegistry.register((ParticleType)SonsOfSinsModParticleTypes.SIN_BLOOD.get(), SinBloodParticle::provider);
-        ParticleProviderRegistry.register((ParticleType)SonsOfSinsModParticleTypes.SIN_SOUL.get(), SinSoulParticle::provider);
-        ParticleProviderRegistry.register((ParticleType)SonsOfSinsModParticleTypes.SLEEP_PA.get(), SleepPaParticle::provider);
+        ParticleProviderRegistry.register(SonsOfSinsModParticleTypes.SIN_BLOOD.get(), SinBloodParticle::provider);
+        ParticleProviderRegistry.register(SonsOfSinsModParticleTypes.SIN_SOUL.get(), SinSoulParticle::provider);
+        ParticleProviderRegistry.register(SonsOfSinsModParticleTypes.SLEEP_PA.get(), SleepPaParticle::provider);
     }
 }
 

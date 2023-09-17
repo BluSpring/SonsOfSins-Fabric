@@ -20,7 +20,7 @@ public class SonsOfSinsModTabs {
 
     public static void load() {
         TAB_SONS_OF_SINS_TAB = FabricItemGroupBuilder.create(new ResourceLocation(SonsOfSinsMod.MODID, "tab"))
-                .icon(() -> new ItemStack((ItemLike)SonsOfSinsModItems.BUTCHER_CARCASS.get()))
+                .icon(() -> new ItemStack(SonsOfSinsModItems.BUTCHER_CARCASS.get()))
                 .build();
     }
 }

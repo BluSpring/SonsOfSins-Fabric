@@ -28,7 +28,7 @@ extends MobEffect {
     }
 
     public void applyEffectTick(LivingEntity entity, int amplifier) {
-        SlothOnEffectActiveTickProcedure.execute((LevelAccessor)entity.level, (Entity)entity);
+        SlothOnEffectActiveTickProcedure.execute(entity.level, entity);
     }
 
     public boolean isDurationEffectTick(int duration, int amplifier) {

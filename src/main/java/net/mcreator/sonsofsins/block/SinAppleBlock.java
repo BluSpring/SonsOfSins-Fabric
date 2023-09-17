@@ -48,7 +48,7 @@ import java.util.List;
 public class SinAppleBlock
 extends Block {
     public SinAppleBlock() {
-        super(BlockBehaviour.Properties.of((Material)Material.PLANT).sound(SoundType.GRASS).strength(0.05f, 10.0f).noCollission().noOcclusion().isRedstoneConductor((bs, br, bp) -> false));
+        super(BlockBehaviour.Properties.of(Material.PLANT).sound(SoundType.GRASS).strength(0.05f, 10.0f).noCollission().noOcclusion().isRedstoneConductor((bs, br, bp) -> false));
     }
 
     public boolean propagatesSkylightDown(BlockState state, BlockGetter reader, BlockPos pos) {
@@ -60,12 +60,12 @@ extends Block {
     }
 
     public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
-        return SinAppleBlock.box((double)3.0, (double)4.0, (double)3.0, (double)13.0, (double)16.0, (double)13.0);
+        return SinAppleBlock.box(3.0, 4.0, 3.0, 13.0, 16.0, 13.0);
     }
 
     @Override
     public ItemStack getCloneItemStack(BlockGetter level, BlockPos pos, BlockState state) {
-        return new ItemStack((ItemLike)SonsOfSinsModItems.ROTTEN_APPLE.get());
+        return new ItemStack(SonsOfSinsModItems.ROTTEN_APPLE.get());
     }
 
     public List<ItemStack> getDrops(BlockState state, LootContext.Builder builder) {
@@ -73,12 +73,12 @@ extends Block {
         if (!dropsOriginal.isEmpty()) {
             return dropsOriginal;
         }
-        return Collections.singletonList(new ItemStack((ItemLike)SonsOfSinsModItems.ROTTEN_APPLE.get()));
+        return Collections.singletonList(new ItemStack(SonsOfSinsModItems.ROTTEN_APPLE.get()));
     }
 
     public void onPlace(BlockState blockstate, Level world, BlockPos pos, BlockState oldState, boolean moving) {
         super.onPlace(blockstate, world, pos, oldState, moving);
-        world.scheduleTick(pos, (Block)this, 10);
+        world.scheduleTick(pos, this, 10);
     }
 
     public void tick(BlockState blockstate, ServerLevel world, BlockPos pos, RandomSource random) {
@@ -86,8 +86,8 @@ extends Block {
         int x = pos.getX();
         int y = pos.getY();
         int z = pos.getZ();
-        SinAppleUpdateTickProcedure.execute((LevelAccessor)world, x, y, z);
-        world.scheduleTick(pos, (Block)this, 10);
+        SinAppleUpdateTickProcedure.execute(world, x, y, z);
+        world.scheduleTick(pos, this, 10);
     }
 }
 

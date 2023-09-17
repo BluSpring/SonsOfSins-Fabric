@@ -30,8 +30,7 @@ public class IronOvenOnEntityTickUpdateProcedure {
         _ent.setYHeadRot(_ent.getYRot());
         _ent.yRotO = _ent.getYRot();
         _ent.xRotO = _ent.getXRot();
-        if (_ent instanceof LivingEntity) {
-            LivingEntity _entity = (LivingEntity)_ent;
+        if (_ent instanceof LivingEntity _entity) {
             _entity.yBodyRotO = _entity.getYRot();
             _entity.yHeadRotO = _entity.getYRot();
         }

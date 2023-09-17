@@ -20,9 +20,8 @@ public class BloodyPuddleLivingEntityIsHitWithItemProcedure {
         if (entity == null) {
             return;
         }
-        if (entity instanceof LivingEntity) {
-            LivingEntity _entity = (LivingEntity)entity;
-            _entity.addEffect(new MobEffectInstance((MobEffect)SonsOfSinsModMobEffects.GREED.get(), 200, 0, false, false));
+        if (entity instanceof LivingEntity _entity) {
+            _entity.addEffect(new MobEffectInstance(SonsOfSinsModMobEffects.GREED.get(), 200, 0, false, false));
         }
     }
 }

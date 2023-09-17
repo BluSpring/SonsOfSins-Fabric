@@ -31,7 +31,7 @@ extends MobEffect {
 
     public void removeAttributeModifiers(LivingEntity entity, AttributeMap attributeMap, int amplifier) {
         super.removeAttributeModifiers(entity, attributeMap, amplifier);
-        GoodbyeEffectOnEffectActiveTickProcedure.execute((LevelAccessor)entity.level, entity.getX(), entity.getY(), entity.getZ(), (Entity)entity);
+        GoodbyeEffectOnEffectActiveTickProcedure.execute(entity.level, entity.getX(), entity.getY(), entity.getZ(), entity);
     }
 
     public boolean isDurationEffectTick(int duration, int amplifier) {

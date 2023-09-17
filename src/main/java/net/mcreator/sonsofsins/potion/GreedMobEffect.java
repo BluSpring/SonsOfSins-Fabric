@@ -28,7 +28,7 @@ extends MobEffect {
     }
 
     public void applyEffectTick(LivingEntity entity, int amplifier) {
-        GreedOnEffectActiveTickProcedure.execute((LevelAccessor)entity.level, (Entity)entity);
+        GreedOnEffectActiveTickProcedure.execute(entity.level, entity);
     }
 
     public boolean isDurationEffectTick(int duration, int amplifier) {

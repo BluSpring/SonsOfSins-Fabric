@@ -20,7 +20,7 @@ public class SinAppleUpdateTickProcedure {
     public static void execute(LevelAccessor world, double x, double y, double z) {
         if (world.getBlockState(new BlockPos(x, y + 1.0, z)).getBlock() != Blocks.OAK_LEAVES) {
             BlockPos _pos = new BlockPos(x, y, z);
-            Block.dropResources((BlockState)world.getBlockState(_pos), (LevelAccessor)world, (BlockPos)new BlockPos(x, y, z), null);
+            Block.dropResources(world.getBlockState(_pos), world, new BlockPos(x, y, z), null);
             world.destroyBlock(_pos, false);
         }
     }

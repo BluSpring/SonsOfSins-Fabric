@@ -32,7 +32,7 @@ public class StructureSpawnerUpdateTickProcedure {
         StructureTemplate template;
         world.setBlock(new BlockPos(x, y, z), Blocks.AIR.defaultBlockState(), 3);
         if (world instanceof ServerLevel && (template = (_serverworld = (ServerLevel)world).getStructureManager().getOrCreate(new ResourceLocation("sons_of_sins", "strange_home"))) != null) {
-            template.placeInWorld((ServerLevelAccessor)_serverworld, new BlockPos(x - 17.0, y - 6.0, z - 17.0), new BlockPos(x - 17.0, y - 6.0, z - 17.0), new StructurePlaceSettings().setRotation(Rotation.NONE).setMirror(Mirror.NONE).setIgnoreEntities(false), _serverworld.random, 3);
+            template.placeInWorld(_serverworld, new BlockPos(x - 17.0, y - 6.0, z - 17.0), new BlockPos(x - 17.0, y - 6.0, z - 17.0), new StructurePlaceSettings().setRotation(Rotation.NONE).setMirror(Mirror.NONE).setIgnoreEntities(false), _serverworld.random, 3);
         }
     }
 }

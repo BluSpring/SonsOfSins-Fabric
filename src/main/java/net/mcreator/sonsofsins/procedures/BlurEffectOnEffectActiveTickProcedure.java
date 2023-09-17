@@ -30,12 +30,10 @@ public class BlurEffectOnEffectActiveTickProcedure {
         if (new Object(){
 
             public boolean checkGamemode(Entity _ent) {
-                if (_ent instanceof ServerPlayer) {
-                    ServerPlayer _serverPlayer = (ServerPlayer)_ent;
+                if (_ent instanceof ServerPlayer _serverPlayer) {
                     return _serverPlayer.gameMode.getGameModeForPlayer() == GameType.SURVIVAL;
                 }
-                if (_ent.level.isClientSide() && _ent instanceof Player) {
-                    Player _player = (Player)_ent;
+                if (_ent.level.isClientSide() && _ent instanceof Player _player) {
                     return Minecraft.getInstance().getConnection().getPlayerInfo(_player.getGameProfile().getId()) != null && Minecraft.getInstance().getConnection().getPlayerInfo(_player.getGameProfile().getId()).getGameMode() == GameType.SURVIVAL;
                 }
                 return false;
@@ -43,12 +41,10 @@ public class BlurEffectOnEffectActiveTickProcedure {
         }.checkGamemode(entity) || new Object(){
 
             public boolean checkGamemode(Entity _ent) {
-                if (_ent instanceof ServerPlayer) {
-                    ServerPlayer _serverPlayer = (ServerPlayer)_ent;
+                if (_ent instanceof ServerPlayer _serverPlayer) {
                     return _serverPlayer.gameMode.getGameModeForPlayer() == GameType.ADVENTURE;
                 }
-                if (_ent.level.isClientSide() && _ent instanceof Player) {
-                    Player _player = (Player)_ent;
+                if (_ent.level.isClientSide() && _ent instanceof Player _player) {
                     return Minecraft.getInstance().getConnection().getPlayerInfo(_player.getGameProfile().getId()) != null && Minecraft.getInstance().getConnection().getPlayerInfo(_player.getGameProfile().getId()).getGameMode() == GameType.ADVENTURE;
                 }
                 return false;
@@ -56,8 +52,7 @@ public class BlurEffectOnEffectActiveTickProcedure {
         }.checkGamemode(entity)) {
             LivingEntity _entity;
             Entity _ent;
-            if (entity instanceof LivingEntity) {
-                LivingEntity _entity2 = (LivingEntity)entity;
+            if (entity instanceof LivingEntity _entity2) {
                 _entity2.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 2, 2, false, false));
             }
             if (Math.random() < 0.5) {

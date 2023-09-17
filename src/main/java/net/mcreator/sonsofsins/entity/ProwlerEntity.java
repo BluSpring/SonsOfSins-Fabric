@@ -69,17 +69,17 @@ extends Spider {
 
     protected void registerGoals() {
         super.registerGoals();
-        this.goalSelector.addGoal(1, (Goal)new MeleeAttackGoal((PathfinderMob)this, 2.5, false){
+        this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 2.5, false){
 
             protected double getAttackReachSqr(LivingEntity entity) {
                 return 4.0 + (double)(entity.getBbWidth() * entity.getBbWidth());
             }
         });
-        this.targetSelector.addGoal(2, (Goal)new NearestAttackableTargetGoal((Mob)this, Player.class, false, false));
-        this.targetSelector.addGoal(3, (Goal)new HurtByTargetGoal((PathfinderMob)this, new Class[0]));
-        this.goalSelector.addGoal(4, (Goal)new BreakDoorGoal((Mob)this, e -> true));
-        this.goalSelector.addGoal(5, (Goal)new RandomLookAroundGoal((Mob)this));
-        this.goalSelector.addGoal(6, (Goal)new LeapAtTargetGoal((Mob)this, 0.4f));
+        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal(this, Player.class, false, false));
+        this.targetSelector.addGoal(3, new HurtByTargetGoal(this, new Class[0]));
+        this.goalSelector.addGoal(4, new BreakDoorGoal(this, e -> true));
+        this.goalSelector.addGoal(5, new RandomLookAroundGoal(this));
+        this.goalSelector.addGoal(6, new LeapAtTargetGoal(this, 0.4f));
     }
 
     public MobType getMobType() {
@@ -103,7 +103,7 @@ extends Spider {
     }
 
     public boolean hurt(DamageSource source, float amount) {
-        WistiverEntityIsHurtProcedure.execute((LevelAccessor)this.level, (Entity)this);
+        WistiverEntityIsHurtProcedure.execute(this.level, this);
         if (source.getDirectEntity() instanceof ThrownPotion || source.getDirectEntity() instanceof AreaEffectCloud) {
             return false;
         }
@@ -124,7 +124,7 @@ extends Spider {
 
     public void baseTick() {
         super.baseTick();
-        ProwlerOnEntityTickUpdateProcedure.execute((LevelAccessor)this.level, this.getX(), this.getY(), this.getZ(), (Entity)this);
+        ProwlerOnEntityTickUpdateProcedure.execute(this.level, this.getX(), this.getY(), this.getZ(), this);
     }
 
     public static void init() {

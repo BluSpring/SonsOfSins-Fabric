@@ -26,7 +26,7 @@ extends MobEffect {
     }
 
     public void applyEffectTick(LivingEntity entity, int amplifier) {
-        BlurEffectOnEffectActiveTickProcedure.execute((Entity)entity);
+        BlurEffectOnEffectActiveTickProcedure.execute(entity);
     }
 
     public boolean isDurationEffectTick(int duration, int amplifier) {

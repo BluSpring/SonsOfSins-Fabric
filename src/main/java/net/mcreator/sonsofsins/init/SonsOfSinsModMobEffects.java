@@ -20,7 +20,7 @@ import net.minecraft.core.Registry;
 import net.minecraft.world.effect.MobEffect;
 
 public class SonsOfSinsModMobEffects {
-    public static final LazyRegistrar<MobEffect> REGISTRY = LazyRegistrar.create(Registry.MOB_EFFECT, (String)"sons_of_sins");
+    public static final LazyRegistrar<MobEffect> REGISTRY = LazyRegistrar.create(Registry.MOB_EFFECT, "sons_of_sins");
     public static final RegistryObject<MobEffect> BLUR_EFFECT = REGISTRY.register("blur_effect", () -> new BlurEffectMobEffect());
     public static final RegistryObject<MobEffect> VERY_BAD_OMEN = REGISTRY.register("very_bad_omen", () -> new VeryBadOmenMobEffect());
     public static final RegistryObject<MobEffect> SLOTH = REGISTRY.register("sloth", () -> new SlothMobEffect());

@@ -31,7 +31,7 @@ public class SonsOfSinsMod {
     public static final Logger LOGGER = LogManager.getLogger(SonsOfSinsMod.class);
     public static final String MODID = "sons_of_sins";
     private static final String PROTOCOL_VERSION = "1";
-    public static final SimpleChannel PACKET_HANDLER = new SimpleChannel((ResourceLocation)new ResourceLocation("sons_of_sins", "sons_of_sins"));
+    public static final SimpleChannel PACKET_HANDLER = new SimpleChannel(new ResourceLocation("sons_of_sins", "sons_of_sins"));
     private static int messageID = 0;
 
     public SonsOfSinsMod() {

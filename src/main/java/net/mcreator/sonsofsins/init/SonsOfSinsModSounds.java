@@ -18,7 +18,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
 
 public class SonsOfSinsModSounds {
-    public static final LazyRegistrar<SoundEvent> REGISTRY = LazyRegistrar.create(Registry.SOUND_EVENT, (String)"sons_of_sins");
+    public static final LazyRegistrar<SoundEvent> REGISTRY = LazyRegistrar.create(Registry.SOUND_EVENT, "sons_of_sins");
     public static final RegistryObject<SoundEvent> BLOODY_BUTCHER_AMBIENT = REGISTRY.register("bloody_butcher_ambient", () -> new SoundEvent(new ResourceLocation("sons_of_sins", "bloody_butcher_ambient")));
     public static final RegistryObject<SoundEvent> BLOODY_BUTCHER_DEATH = REGISTRY.register("bloody_butcher_death", () -> new SoundEvent(new ResourceLocation("sons_of_sins", "bloody_butcher_death")));
     public static final RegistryObject<SoundEvent> BLOODY_BUTCHER_HURT = REGISTRY.register("bloody_butcher_hurt", () -> new SoundEvent(new ResourceLocation("sons_of_sins", "bloody_butcher_hurt")));

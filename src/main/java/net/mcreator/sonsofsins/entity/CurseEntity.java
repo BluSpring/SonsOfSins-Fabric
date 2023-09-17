@@ -78,7 +78,7 @@ extends Monster {
         this.xpReward = 0;
         this.setNoAi(false);
         this.setPersistenceRequired();
-        this.moveControl = new FlyingMoveControl((Mob)this, 10, true);
+        this.moveControl = new FlyingMoveControl(this, 10, true);
     }
 
     public Packet<?> getAddEntityPacket() {
@@ -86,7 +86,7 @@ extends Monster {
     }
 
     protected PathNavigation createNavigation(Level world) {
-        return new FlyingPathNavigation((Mob)this, world);
+        return new FlyingPathNavigation(this, world);
     }
 
     protected void registerGoals() {
@@ -113,9 +113,9 @@ extends Monster {
             public void tick() {
                 LivingEntity livingentity = CurseEntity.this.getTarget();
                 if (CurseEntity.this.getBoundingBox().intersects(livingentity.getBoundingBox())) {
-                    CurseEntity.this.doHurtTarget((Entity)livingentity);
+                    CurseEntity.this.doHurtTarget(livingentity);
                 } else {
-                    double d0 = CurseEntity.this.distanceToSqr((Entity)livingentity);
+                    double d0 = CurseEntity.this.distanceToSqr(livingentity);
                     if (d0 < 16.0) {
                         Vec3 vec3d = livingentity.getEyePosition(1.0f);
                         CurseEntity.this.moveControl.setWantedPosition(vec3d.x, vec3d.y, vec3d.z, 2.0);
@@ -123,9 +123,9 @@ extends Monster {
                 }
             }
         });
-        this.targetSelector.addGoal(2, (Goal)new NearestAttackableTargetGoal((Mob)this, Player.class, false, false));
-        this.targetSelector.addGoal(3, (Goal)new HurtByTargetGoal((PathfinderMob)this, new Class[0]));
-        this.goalSelector.addGoal(5, (Goal)new RandomLookAroundGoal((Mob)this));
+        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal(this, Player.class, false, false));
+        this.targetSelector.addGoal(3, new HurtByTargetGoal(this, new Class[0]));
+        this.goalSelector.addGoal(5, new RandomLookAroundGoal(this));
     }
 
     public MobType getMobType() {
@@ -153,7 +153,7 @@ extends Monster {
     }
 
     public boolean hurt(DamageSource source, float amount) {
-        CurseEntityIsHurtProcedure.execute((LevelAccessor)this.level, (Entity)this, source.getEntity());
+        CurseEntityIsHurtProcedure.execute(this.level, this, source.getEntity());
         if (source.getDirectEntity() instanceof AbstractArrow) {
             return false;
         }
@@ -177,12 +177,12 @@ extends Monster {
 
     public void baseTick() {
         super.baseTick();
-        CurseOnEntityTickUpdateProcedure.execute((LevelAccessor)this.level, this.getX(), this.getY(), this.getZ(), (Entity)this);
+        CurseOnEntityTickUpdateProcedure.execute(this.level, this.getX(), this.getY(), this.getZ(), this);
     }
 
     public void playerTouch(Player sourceentity) {
         super.playerTouch(sourceentity);
-        CursePlayerCollidesWithThisEntityProcedure.execute((LevelAccessor)this.level, this.getX(), this.getY(), this.getZ(), (Entity)this, (Entity)sourceentity);
+        CursePlayerCollidesWithThisEntityProcedure.execute(this.level, this.getX(), this.getY(), this.getZ(), this, sourceentity);
     }
 
     public boolean isPushable() {

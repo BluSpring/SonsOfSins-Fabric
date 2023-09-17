@@ -21,17 +21,14 @@ public class WistiverThisEntityKillsAnotherOneProcedure {
             return;
         }
         if (sourceentity instanceof LivingEntity && (_livEnt = (LivingEntity)sourceentity).hasEffect(MobEffects.DAMAGE_BOOST)) {
-            if (sourceentity instanceof LivingEntity) {
+            if (sourceentity instanceof LivingEntity _entity) {
                 LivingEntity _livEnt2;
-                LivingEntity _entity = (LivingEntity)sourceentity;
                 _entity.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 19200, (sourceentity instanceof LivingEntity && (_livEnt2 = (LivingEntity)sourceentity).hasEffect(MobEffects.DAMAGE_BOOST) ? _livEnt2.getEffect(MobEffects.DAMAGE_BOOST).getAmplifier() : 0) + 1, false, false));
             }
-        } else if (sourceentity instanceof LivingEntity) {
-            LivingEntity _entity = (LivingEntity)sourceentity;
+        } else if (sourceentity instanceof LivingEntity _entity) {
             _entity.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 19200, 0, false, false));
         }
-        if (sourceentity instanceof LivingEntity) {
-            LivingEntity _entity = (LivingEntity)sourceentity;
+        if (sourceentity instanceof LivingEntity _entity) {
             _entity.addEffect(new MobEffectInstance(MobEffects.HARM, 1, 4, false, false));
         }
     }

@@ -36,9 +36,9 @@ extends TextureSheetParticle {
         this.lifetime = 7;
         this.gravity = -0.1f;
         this.hasPhysics = true;
-        this.xd = vx * 1.0;
-        this.yd = vy * 1.0;
-        this.zd = vz * 1.0;
+        this.xd = vx;
+        this.yd = vy;
+        this.zd = vz;
         this.pickSprite(spriteSet);
     }
 

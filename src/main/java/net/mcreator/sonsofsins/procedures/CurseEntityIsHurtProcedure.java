@@ -36,9 +36,8 @@ public class CurseEntityIsHurtProcedure {
         if (Math.random() < 0.25 && (sourceentity instanceof Mob || sourceentity instanceof Player || sourceentity instanceof Animal)) {
             sourceentity.setDeltaMovement(new Vec3((entity.getX() - sourceentity.getX()) * 0.5, (entity.getY() - sourceentity.getY()) * 0.5, (entity.getZ() - sourceentity.getZ()) * 0.5));
         }
-        if (world instanceof ServerLevel) {
-            ServerLevel _level = (ServerLevel)world;
-            _level.sendParticles((ParticleOptions)((SimpleParticleType)SonsOfSinsModParticleTypes.SIN_SOUL.get()), entity.getX(), entity.getY(), entity.getZ(), 6, 0.3, 0.3, 0.3, 0.01);
+        if (world instanceof ServerLevel _level) {
+            _level.sendParticles((ParticleOptions) SonsOfSinsModParticleTypes.SIN_SOUL.get(), entity.getX(), entity.getY(), entity.getZ(), 6, 0.3, 0.3, 0.3, 0.01);
         }
         if (world.getLevelData().getGameRules().getBoolean(SonsOfSinsModGameRules.SONSGRIEFING)) {
             world.destroyBlock(new BlockPos(Math.floor(entity.getX()), Math.floor(entity.getY()), Math.floor(entity.getZ())), false);

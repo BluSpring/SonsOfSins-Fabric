@@ -27,7 +27,7 @@ import net.minecraft.world.level.block.Block;
 
 
 public class SonsOfSinsModItems {
-    public static final LazyRegistrar<Item> REGISTRY = LazyRegistrar.create(Registry.ITEM, (String)"sons_of_sins");
+    public static final LazyRegistrar<Item> REGISTRY = LazyRegistrar.create(Registry.ITEM, "sons_of_sins");
     public static final RegistryObject<Item> IRON_OVEN_BLOCK = SonsOfSinsModItems.block(SonsOfSinsModBlocks.IRON_OVEN_BLOCK, SonsOfSinsModTabs.TAB_SONS_OF_SINS_TAB);
     public static final RegistryObject<Item> WISTIVER_JAWS = REGISTRY.register("wistiver_jaws", () -> new WistiverJawsItem());
     public static final RegistryObject<Item> PEACEFUL_BED = REGISTRY.register("peaceful_bed", () -> new PeacefulBedItem());
@@ -55,7 +55,7 @@ public class SonsOfSinsModItems {
     public static final RegistryObject<Item> STRUCTURE_SPAWNER = SonsOfSinsModItems.block(SonsOfSinsModBlocks.STRUCTURE_SPAWNER, null);
 
     private static RegistryObject<Item> block(RegistryObject<Block> block, CreativeModeTab tab) {
-        return REGISTRY.register(block.getId().getPath(), () -> new BlockItem((Block)block.get(), new Item.Properties().tab(tab)));
+        return REGISTRY.register(block.getId().getPath(), () -> new BlockItem(block.get(), new Item.Properties().tab(tab)));
     }
 }
 

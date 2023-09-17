@@ -21,15 +21,13 @@ public class ButcherCarcassItemInInventoryTickProcedure {
         if (entity == null) {
             return;
         }
-        if (entity instanceof LivingEntity) {
-            LivingEntity _livEnt = (LivingEntity)entity;
+        if (entity instanceof LivingEntity _livEnt) {
             f2 = _livEnt.getHealth();
         } else {
             f2 = -1.0f;
         }
         double d = f2;
-        if (entity instanceof LivingEntity) {
-            LivingEntity _livEnt = (LivingEntity)entity;
+        if (entity instanceof LivingEntity _livEnt) {
             f = _livEnt.getMaxHealth();
         } else {
             f = -1.0f;

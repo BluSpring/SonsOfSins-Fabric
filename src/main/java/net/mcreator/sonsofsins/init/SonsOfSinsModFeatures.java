@@ -18,7 +18,7 @@ import net.minecraft.core.Registry;
 import net.minecraft.world.level.levelgen.feature.Feature;
 
 public class SonsOfSinsModFeatures {
-    public static final LazyRegistrar<Feature<?>> REGISTRY = LazyRegistrar.create(Registry.FEATURE, (String)"sons_of_sins");
+    public static final LazyRegistrar<Feature<?>> REGISTRY = LazyRegistrar.create(Registry.FEATURE, "sons_of_sins");
     public static final RegistryObject<Feature<?>> STRANGE_HOUSE = REGISTRY.register("strange_house", StrangeHouseFeature::feature);
 }
 

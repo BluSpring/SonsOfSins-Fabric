@@ -70,17 +70,17 @@ extends Spider {
 
     protected void registerGoals() {
         super.registerGoals();
-        this.goalSelector.addGoal(1, (Goal)new MeleeAttackGoal((PathfinderMob)this, 2.0, false){
+        this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 2.0, false){
 
             protected double getAttackReachSqr(LivingEntity entity) {
                 return 4.0 + (double)(entity.getBbWidth() * entity.getBbWidth());
             }
         });
-        this.targetSelector.addGoal(2, (Goal)new NearestAttackableTargetGoal((Mob)this, Player.class, false, false));
-        this.targetSelector.addGoal(3, (Goal)new HurtByTargetGoal((PathfinderMob)this, new Class[0]));
-        this.goalSelector.addGoal(4, (Goal)new BreakDoorGoal((Mob)this, e -> true));
-        this.goalSelector.addGoal(5, (Goal)new RandomLookAroundGoal((Mob)this));
-        this.goalSelector.addGoal(6, (Goal)new FloatGoal((Mob)this));
+        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal(this, Player.class, false, false));
+        this.targetSelector.addGoal(3, new HurtByTargetGoal(this, new Class[0]));
+        this.goalSelector.addGoal(4, new BreakDoorGoal(this, e -> true));
+        this.goalSelector.addGoal(5, new RandomLookAroundGoal(this));
+        this.goalSelector.addGoal(6, new FloatGoal(this));
     }
 
     public MobType getMobType() {
@@ -104,7 +104,7 @@ extends Spider {
     }
 
     public boolean hurt(DamageSource source, float amount) {
-        WistiverEntityIsHurtProcedure.execute((LevelAccessor)this.level, (Entity)this);
+        WistiverEntityIsHurtProcedure.execute(this.level, this);
         if (source.getDirectEntity() instanceof ThrownPotion || source.getDirectEntity() instanceof AreaEffectCloud) {
             return false;
         }
@@ -125,12 +125,12 @@ extends Spider {
 
     public void awardKillScore(Entity entity, int score, DamageSource damageSource) {
         super.awardKillScore(entity, score, damageSource);
-        WistiverThisEntityKillsAnotherOneProcedure.execute((Entity)this);
+        WistiverThisEntityKillsAnotherOneProcedure.execute(this);
     }
 
     public void baseTick() {
         super.baseTick();
-        WistiverOnEntityTickUpdateProcedure.execute((LevelAccessor)this.level, this.getX(), this.getY(), this.getZ(), (Entity)this);
+        WistiverOnEntityTickUpdateProcedure.execute(this.level, this.getX(), this.getY(), this.getZ(), this);
     }
 
     public static void init() {

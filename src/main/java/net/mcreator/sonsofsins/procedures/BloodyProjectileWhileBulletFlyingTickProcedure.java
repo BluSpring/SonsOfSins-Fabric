@@ -22,9 +22,8 @@ public class BloodyProjectileWhileBulletFlyingTickProcedure {
         if (entity == null) {
             return;
         }
-        if (world instanceof ServerLevel) {
-            ServerLevel _level = (ServerLevel)world;
-            _level.sendParticles((ParticleOptions)((SimpleParticleType)SonsOfSinsModParticleTypes.SIN_BLOOD.get()), entity.getX(), entity.getY(), entity.getZ(), 4, 0.3, 0.3, 0.3, 0.01);
+        if (world instanceof ServerLevel _level) {
+            _level.sendParticles((ParticleOptions) SonsOfSinsModParticleTypes.SIN_BLOOD.get(), entity.getX(), entity.getY(), entity.getZ(), 4, 0.3, 0.3, 0.3, 0.01);
         }
     }
 }

@@ -28,8 +28,7 @@ public class BloodyPuddleRightClickedInAirProcedure {
         if (entity == null) {
             return;
         }
-        if (entity instanceof LivingEntity) {
-            LivingEntity _entity = (LivingEntity)entity;
+        if (entity instanceof LivingEntity _entity) {
             _entity.swing(InteractionHand.MAIN_HAND, true);
         }
         Entity _shootFrom = entity;
@@ -48,10 +47,9 @@ public class BloodyPuddleRightClickedInAirProcedure {
             }.getArrow(projectileLevel, entity, 1.0f, 0);
             _entityToSpawn.setPos(_shootFrom.getX(), _shootFrom.getEyeY() - 0.1, _shootFrom.getZ());
             _entityToSpawn.shoot(_shootFrom.getLookAngle().x, _shootFrom.getLookAngle().y, _shootFrom.getLookAngle().z, 1.5f, 0.0f);
-            projectileLevel.addFreshEntity((Entity)_entityToSpawn);
+            projectileLevel.addFreshEntity(_entityToSpawn);
         }
-        if (entity instanceof Player) {
-            Player _player = (Player)entity;
+        if (entity instanceof Player _player) {
             _player.getCooldowns().addCooldown(itemstack.getItem(), 5);
         }
     }

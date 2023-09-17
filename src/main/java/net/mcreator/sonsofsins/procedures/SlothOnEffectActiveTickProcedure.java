@@ -27,9 +27,8 @@ public class SlothOnEffectActiveTickProcedure {
         entity.setDeltaMovement(new Vec3(0.0, entity.getDeltaMovement().y(), 0.0));
         entity.setDeltaMovement(new Vec3(0.0, entity.getDeltaMovement().y(), 0.0));
         entity.setDeltaMovement(new Vec3(0.0, entity.getDeltaMovement().y(), 0.0));
-        if (Math.random() < 0.1 && world instanceof ServerLevel) {
-            ServerLevel _level = (ServerLevel)world;
-            _level.sendParticles((ParticleOptions)((SimpleParticleType)SonsOfSinsModParticleTypes.SLEEP_PA.get()), entity.getX(), entity.getY() + 1.9, entity.getZ(), 1, 0.25, 0.1, 0.25, 0.0);
+        if (Math.random() < 0.1 && world instanceof ServerLevel _level) {
+            _level.sendParticles((ParticleOptions) SonsOfSinsModParticleTypes.SLEEP_PA.get(), entity.getX(), entity.getY() + 1.9, entity.getZ(), 1, 0.25, 0.1, 0.25, 0.0);
         }
     }
 }

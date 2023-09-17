@@ -57,9 +57,8 @@ public class WistiverOnEntityTickUpdateProcedure {
         List<Entity> _entfound = world.getEntitiesOfClass(Entity.class, new AABB(_center, _center).inflate(8.0), e -> true).stream().sorted(Comparator.comparingDouble(_entcnd -> _entcnd.distanceToSqr(final_center1))).collect(Collectors.toList());
         for (Entity entityiterator : _entfound) {
             LivingEntity _livEnt;
-            if (entityiterator == entity || entity instanceof LivingEntity && (_livEnt = (LivingEntity)entity).hasEffect((MobEffect)SonsOfSinsModMobEffects.BLUR_EFFECT.get()) || !(entityiterator instanceof LivingEntity)) continue;
-            LivingEntity _entity3 = (LivingEntity)entityiterator;
-            _entity3.addEffect(new MobEffectInstance((MobEffect)SonsOfSinsModMobEffects.BLUR_EFFECT.get(), 40, 0, false, false));
+            if (entityiterator == entity || entity instanceof LivingEntity && (_livEnt = (LivingEntity)entity).hasEffect(SonsOfSinsModMobEffects.BLUR_EFFECT.get()) || !(entityiterator instanceof LivingEntity _entity3)) continue;
+            _entity3.addEffect(new MobEffectInstance(SonsOfSinsModMobEffects.BLUR_EFFECT.get(), 40, 0, false, false));
         }
         if (Math.random() < 0.5) {
             _ent = entity;
@@ -122,12 +121,10 @@ public class WistiverOnEntityTickUpdateProcedure {
             if (entityiterator instanceof Player && (new Object(){
 
                 public boolean checkGamemode(Entity _ent) {
-                    if (_ent instanceof ServerPlayer) {
-                        ServerPlayer _serverPlayer = (ServerPlayer)_ent;
+                    if (_ent instanceof ServerPlayer _serverPlayer) {
                         return _serverPlayer.gameMode.getGameModeForPlayer() == GameType.SURVIVAL;
                     }
-                    if (_ent.level.isClientSide() && _ent instanceof Player) {
-                        Player _player = (Player)_ent;
+                    if (_ent.level.isClientSide() && _ent instanceof Player _player) {
                         return Minecraft.getInstance().getConnection().getPlayerInfo(_player.getGameProfile().getId()) != null && Minecraft.getInstance().getConnection().getPlayerInfo(_player.getGameProfile().getId()).getGameMode() == GameType.SURVIVAL;
                     }
                     return false;
@@ -135,12 +132,10 @@ public class WistiverOnEntityTickUpdateProcedure {
             }.checkGamemode(entityiterator) || new Object(){
 
                 public boolean checkGamemode(Entity _ent) {
-                    if (_ent instanceof ServerPlayer) {
-                        ServerPlayer _serverPlayer = (ServerPlayer)_ent;
+                    if (_ent instanceof ServerPlayer _serverPlayer) {
                         return _serverPlayer.gameMode.getGameModeForPlayer() == GameType.ADVENTURE;
                     }
-                    if (_ent.level.isClientSide() && _ent instanceof Player) {
-                        Player _player = (Player)_ent;
+                    if (_ent.level.isClientSide() && _ent instanceof Player _player) {
                         return Minecraft.getInstance().getConnection().getPlayerInfo(_player.getGameProfile().getId()) != null && Minecraft.getInstance().getConnection().getPlayerInfo(_player.getGameProfile().getId()).getGameMode() == GameType.ADVENTURE;
                     }
                     return false;
@@ -151,11 +146,7 @@ public class WistiverOnEntityTickUpdateProcedure {
             }
             target = false;
         }
-        if (target) {
-            entity.getExtraCustomData().putBoolean("tagTarget", true);
-        } else {
-            entity.getExtraCustomData().putBoolean("tagTarget", false);
-        }
+        entity.getExtraCustomData().putBoolean("tagTarget", target);
     }
 }
 

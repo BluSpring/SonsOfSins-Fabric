@@ -41,7 +41,7 @@ import java.util.List;
 public class StructureSpawnerBlock
 extends Block {
     public StructureSpawnerBlock() {
-        super(BlockBehaviour.Properties.of((Material)Material.STONE).sound(SoundType.STONE).strength(-1.0f, 8000000.0f).randomTicks());
+        super(BlockBehaviour.Properties.of(Material.STONE).sound(SoundType.STONE).strength(-1.0f, 8000000.0f).randomTicks());
     }
 
     public int getLightBlock(BlockState state, BlockGetter worldIn, BlockPos pos) {
@@ -53,12 +53,12 @@ extends Block {
         if (!dropsOriginal.isEmpty()) {
             return dropsOriginal;
         }
-        return Collections.singletonList(new ItemStack((ItemLike)this, 1));
+        return Collections.singletonList(new ItemStack(this, 1));
     }
 
     public void onPlace(BlockState blockstate, Level world, BlockPos pos, BlockState oldState, boolean moving) {
         super.onPlace(blockstate, world, pos, oldState, moving);
-        StructureSpawnerUpdateTickProcedure.execute((LevelAccessor)world, pos.getX(), pos.getY(), pos.getZ());
+        StructureSpawnerUpdateTickProcedure.execute(world, pos.getX(), pos.getY(), pos.getZ());
     }
 
     public void tick(BlockState blockstate, ServerLevel world, BlockPos pos, RandomSource random) {
@@ -66,7 +66,7 @@ extends Block {
         int x = pos.getX();
         int y = pos.getY();
         int z = pos.getZ();
-        StructureSpawnerUpdateTickProcedure.execute((LevelAccessor)world, x, y, z);
+        StructureSpawnerUpdateTickProcedure.execute(world, x, y, z);
     }
 }
 

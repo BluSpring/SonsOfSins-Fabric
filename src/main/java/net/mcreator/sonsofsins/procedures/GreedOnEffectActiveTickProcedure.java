@@ -26,13 +26,11 @@ public class GreedOnEffectActiveTickProcedure {
         }
         Entity _ent = entity;
         _ent.teleportTo(entity.getX(), entity.getY() - 0.01, entity.getZ());
-        if (_ent instanceof ServerPlayer) {
-            ServerPlayer _serverPlayer = (ServerPlayer)_ent;
+        if (_ent instanceof ServerPlayer _serverPlayer) {
             _serverPlayer.connection.teleport(entity.getX(), entity.getY() - 0.01, entity.getZ(), _ent.getYRot(), _ent.getXRot());
         }
-        if (world instanceof ServerLevel) {
-            ServerLevel _level = (ServerLevel)world;
-            _level.sendParticles((ParticleOptions)((SimpleParticleType)SonsOfSinsModParticleTypes.SIN_BLOOD.get()), entity.getX(), entity.getY(), entity.getZ(), 2, 0.3, 0.3, 0.3, 0.01);
+        if (world instanceof ServerLevel _level) {
+            _level.sendParticles((ParticleOptions) SonsOfSinsModParticleTypes.SIN_BLOOD.get(), entity.getX(), entity.getY(), entity.getZ(), 2, 0.3, 0.3, 0.3, 0.01);
         }
     }
 }

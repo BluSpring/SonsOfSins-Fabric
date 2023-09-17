@@ -34,9 +34,8 @@ public class WistiverJawsLivingEntityIsHitWithItemProcedure {
         if (entity == null || sourceentity == null) {
             return;
         }
-        if (world instanceof ServerLevel) {
-            ServerLevel _level = (ServerLevel)world;
-            _level.sendParticles((ParticleOptions)((SimpleParticleType)SonsOfSinsModParticleTypes.SIN_BLOOD.get()), entity.getX(), entity.getY(), entity.getZ(), 6, 0.3, 0.3, 0.3, 0.01);
+        if (world instanceof ServerLevel _level) {
+            _level.sendParticles((ParticleOptions) SonsOfSinsModParticleTypes.SIN_BLOOD.get(), entity.getX(), entity.getY(), entity.getZ(), 6, 0.3, 0.3, 0.3, 0.01);
         }
         if (sourceentity instanceof LivingEntity) {
             _entity = (LivingEntity)sourceentity;
@@ -46,7 +45,7 @@ public class WistiverJawsLivingEntityIsHitWithItemProcedure {
             _entity = (LivingEntity)sourceentity;
             _entity.addEffect(new MobEffectInstance(MobEffects.SATURATION, 1, 1));
         }
-        if (itemstack.getOrCreateTag().getDouble("Damage") < SonsOfSinsModVariables.MapVariables.get((LevelAccessor)world).wistiverjawlimit) {
+        if (itemstack.getOrCreateTag().getDouble("Damage") < SonsOfSinsModVariables.MapVariables.get(world).wistiverjawlimit) {
             itemstack.getOrCreateTag().putDouble("Damage", itemstack.getOrCreateTag().getDouble("Damage") + 1.0);
         }
         entity.hurt(DamageSource.OUT_OF_WORLD, (float)itemstack.getOrCreateTag().getDouble("Damage"));

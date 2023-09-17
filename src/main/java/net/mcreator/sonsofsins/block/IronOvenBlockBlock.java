@@ -66,7 +66,7 @@ import java.util.List;
 public class IronOvenBlockBlock
 extends Block implements ConnectableRedstoneBlock {
     public IronOvenBlockBlock() {
-        super(BlockBehaviour.Properties.of((Material)Material.METAL).sound(SoundType.STONE).strength(3.0f, 25000.0f).lightLevel(s -> 3).noOcclusion().isRedstoneConductor((bs, br, bp) -> false));
+        super(BlockBehaviour.Properties.of(Material.METAL).sound(SoundType.STONE).strength(3.0f, 25000.0f).lightLevel(s -> 3).noOcclusion().isRedstoneConductor((bs, br, bp) -> false));
         LandPathNodeTypesRegistry.register(this, BlockPathTypes.BLOCKED, BlockPathTypes.BLOCKED);
     }
 
@@ -79,7 +79,7 @@ extends Block implements ConnectableRedstoneBlock {
     }
 
     public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
-        return IronOvenBlockBlock.box((double)1.5, (double)0.0, (double)1.5, (double)14.5, (double)30.0, (double)14.5);
+        return IronOvenBlockBlock.box(1.5, 0.0, 1.5, 14.5, 30.0, 14.5);
     }
 
     public boolean isSignalSource(BlockState state) {
@@ -98,12 +98,12 @@ extends Block implements ConnectableRedstoneBlock {
         if (!dropsOriginal.isEmpty()) {
             return dropsOriginal;
         }
-        return Collections.singletonList(new ItemStack((ItemLike)this, 1));
+        return Collections.singletonList(new ItemStack(this, 1));
     }
 
     public void onPlace(BlockState blockstate, Level world, BlockPos pos, BlockState oldState, boolean moving) {
         super.onPlace(blockstate, world, pos, oldState, moving);
-        world.scheduleTick(pos, (Block)this, 10);
+        world.scheduleTick(pos, this, 10);
     }
 
     public void tick(BlockState blockstate, ServerLevel world, BlockPos pos, RandomSource random) {
@@ -111,13 +111,13 @@ extends Block implements ConnectableRedstoneBlock {
         int x = pos.getX();
         int y = pos.getY();
         int z = pos.getZ();
-        IronOvenBlockUpdateTickProcedure.execute((LevelAccessor)world, x, y, z);
-        world.scheduleTick(pos, (Block)this, 10);
+        IronOvenBlockUpdateTickProcedure.execute(world, x, y, z);
+        world.scheduleTick(pos, this, 10);
     }
 
     public void setPlacedBy(Level world, BlockPos pos, BlockState blockstate, LivingEntity entity, ItemStack itemstack) {
         super.setPlacedBy(world, pos, blockstate, entity, itemstack);
-        IronOvenBlockBlockIsPlacedByProcedure.execute((LevelAccessor)world, pos.getX(), pos.getY(), pos.getZ(), (Entity)entity);
+        IronOvenBlockBlockIsPlacedByProcedure.execute(world, pos.getX(), pos.getY(), pos.getZ(), entity);
     }
 
     public InteractionResult use(BlockState blockstate, Level world, BlockPos pos, Player entity, InteractionHand hand, BlockHitResult hit) {
@@ -129,7 +129,7 @@ extends Block implements ConnectableRedstoneBlock {
         double hitY = hit.getLocation().y;
         double hitZ = hit.getLocation().z;
         Direction direction = hit.getDirection();
-        IronOvenBlockOnBlockRightClickedProcedure.execute((LevelAccessor)world, x, y, z, (Entity)entity);
+        IronOvenBlockOnBlockRightClickedProcedure.execute(world, x, y, z, entity);
         return InteractionResult.SUCCESS;
     }
 }

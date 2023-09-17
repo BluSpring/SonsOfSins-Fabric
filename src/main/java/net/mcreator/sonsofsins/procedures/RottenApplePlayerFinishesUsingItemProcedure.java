@@ -20,9 +20,8 @@ public class RottenApplePlayerFinishesUsingItemProcedure {
         if (entity == null) {
             return;
         }
-        if (entity instanceof LivingEntity) {
-            LivingEntity _entity = (LivingEntity)entity;
-            _entity.addEffect(new MobEffectInstance((MobEffect)SonsOfSinsModMobEffects.VERY_BAD_OMEN.get(), 3600, 0));
+        if (entity instanceof LivingEntity _entity) {
+            _entity.addEffect(new MobEffectInstance(SonsOfSinsModMobEffects.VERY_BAD_OMEN.get(), 3600, 0));
         }
     }
 }

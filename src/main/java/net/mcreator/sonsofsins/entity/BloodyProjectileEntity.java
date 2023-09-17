@@ -65,12 +65,12 @@ implements ItemSupplier {
     }
 
     public Packet<?> getAddEntityPacket() {
-        return new ClientboundAddEntityPacket((Entity)this);
+        return new ClientboundAddEntityPacket(this);
     }
 
     @Environment(EnvType.CLIENT)
     public ItemStack getItem() {
-        return new ItemStack((ItemLike)SonsOfSinsModItems.BLOODY_PROJECTILE.get());
+        return new ItemStack(SonsOfSinsModItems.BLOODY_PROJECTILE.get());
     }
 
     protected ItemStack getPickupItem() {
@@ -89,7 +89,7 @@ implements ItemSupplier {
 
     public void tick() {
         super.tick();
-        BloodyProjectileWhileBulletFlyingTickProcedure.execute((LevelAccessor)this.level, this.getOwner());
+        BloodyProjectileWhileBulletFlyingTickProcedure.execute(this.level, this.getOwner());
         if (this.inGround) {
             this.discard();
         }
@@ -97,12 +97,12 @@ implements ItemSupplier {
 
     public static BloodyProjectileEntity shoot(Level world, LivingEntity entity, RandomSource random, float power, double damage, int knockback) {
         BloodyProjectileEntity entityarrow = new BloodyProjectileEntity((SonsOfSinsModEntities.BLOODY_PROJECTILE.get()), entity, world);
-        entityarrow.shoot(entity.getViewVector((float)1.0f).x, entity.getViewVector((float)1.0f).y, entity.getViewVector((float)1.0f).z, power * 2.0f, 0.0f);
+        entityarrow.shoot(entity.getViewVector(1.0f).x, entity.getViewVector(1.0f).y, entity.getViewVector(1.0f).z, power * 2.0f, 0.0f);
         entityarrow.setSilent(true);
         entityarrow.setCritArrow(false);
         entityarrow.setBaseDamage(damage);
         entityarrow.setKnockback(knockback);
-        world.addFreshEntity((Entity)entityarrow);
+        world.addFreshEntity(entityarrow);
         world.playSound(null, entity.getX(), entity.getY(), entity.getZ(), Registry.SOUND_EVENT.get(new ResourceLocation("entity.arrow.shoot")), SoundSource.PLAYERS, 1.0f, 1.0f / (random.nextFloat() * 0.5f + 1.0f) + power / 2.0f);
         return entityarrow;
     }
@@ -117,7 +117,7 @@ implements ItemSupplier {
         entityarrow.setBaseDamage(4.0);
         entityarrow.setKnockback(0);
         entityarrow.setCritArrow(false);
-        entity.level.addFreshEntity((Entity)entityarrow);
+        entity.level.addFreshEntity(entityarrow);
         entity.level.playSound(null, entity.getX(), entity.getY(), entity.getZ(), Registry.SOUND_EVENT.get(new ResourceLocation("entity.arrow.shoot")), SoundSource.PLAYERS, 1.0f, 1.0f / (RandomSource.create().nextFloat() * 0.5f + 1.0f));
         return entityarrow;
     }

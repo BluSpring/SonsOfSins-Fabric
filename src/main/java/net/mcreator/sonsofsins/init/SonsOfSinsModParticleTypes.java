@@ -19,7 +19,7 @@ import net.minecraft.core.particles.ParticleType;
 import net.minecraft.core.particles.SimpleParticleType;
 
 public class SonsOfSinsModParticleTypes {
-    public static final LazyRegistrar<ParticleType<?>> REGISTRY = LazyRegistrar.create(Registry.PARTICLE_TYPE, (String)"sons_of_sins");
+    public static final LazyRegistrar<ParticleType<?>> REGISTRY = LazyRegistrar.create(Registry.PARTICLE_TYPE, "sons_of_sins");
     public static final RegistryObject<SimpleParticleType> SIN_BLOOD = REGISTRY.register("sin_blood", () -> FabricParticleTypes.simple(false));
     public static final RegistryObject<SimpleParticleType> SIN_SOUL = REGISTRY.register("sin_soul", () -> FabricParticleTypes.simple(false));
     public static final RegistryObject<SimpleParticleType> SLEEP_PA = REGISTRY.register("sleep_pa", () -> FabricParticleTypes.simple(false));
