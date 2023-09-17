@@ -20,6 +20,8 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.material.Fluids;
 
 public class WistiverEntityIsHurtProcedure {
     public static void execute(LevelAccessor world, Entity entity) {
@@ -52,7 +54,11 @@ public class WistiverEntityIsHurtProcedure {
                         if (blockState.is(BlockTags.WITHER_IMMUNE) || blockState.is(BlockTags.DRAGON_IMMUNE))
                             continue;
 
+                        if (blockState.getFluidState().getType() != Fluids.EMPTY)
+                            continue;
+
                         world.destroyBlock(blockPos, false);
+                        world.blockUpdated(blockPos, Blocks.AIR);
                     }
                 }
             }

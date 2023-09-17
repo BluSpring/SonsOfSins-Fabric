@@ -27,6 +27,8 @@ import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.Vec3;
 
 public class CurseEntityIsHurtProcedure {
@@ -63,7 +65,11 @@ public class CurseEntityIsHurtProcedure {
                         if (blockState.is(BlockTags.WITHER_IMMUNE) || blockState.is(BlockTags.DRAGON_IMMUNE))
                             continue;
 
+                        if (blockState.getFluidState().getType() != Fluids.EMPTY)
+                            continue;
+
                         world.destroyBlock(blockPos, false);
+                        world.blockUpdated(blockPos, Blocks.AIR);
                     }
                 }
             }
